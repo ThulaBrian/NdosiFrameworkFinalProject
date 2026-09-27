@@ -1,5 +1,6 @@
-package Pages;
+package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,14 +14,14 @@ public class DashboardPage {
     WebDriverWait wait;
 
     // I used the my learning Button-Dropdown list
-    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[4]/button")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[3]/button")
     WebElement verify_dashboardpage;
 
-    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[1]/button")
-    WebElement LearnButton;
-
-    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[1]/div/button[2]/span[2]")
-    WebElement learningMetrialoption;
+//    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[1]/button")
+//    WebElement LearnButton;
+//
+//    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[1]/div/button[2]/span[2]")
+//    WebElement learningMetrialoption;
 
     @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[3]/div/button/span[2]")
     WebElement menuBtn;
@@ -30,7 +31,7 @@ public class DashboardPage {
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     public void verifyDashBoardPage()
@@ -40,10 +41,18 @@ public class DashboardPage {
     }
     public void clickMenuBtn()
     {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "window.scrollTo(0, 0);"
+        );
+        wait.until(ExpectedConditions.visibilityOf(menuBtn));
         menuBtn.click();
     }
     public void clickMyprofileBtn()
     {
+        JavascriptExecutor js = (JavascriptExecutor) driver; js.executeScript( "window.scrollTo(document.body.scrollWidth, 0);" );
+        wait.until(ExpectedConditions.elementToBeClickable(myprofileBtn));
         myprofileBtn.click();
     }
 

@@ -1,13 +1,12 @@
-package NdosiUITest;
+package base;
 
-import Pages.*;
+import pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import utils.BrowserFactory;
-import Config.ConfigReader;
-import utils.TakeScreenshots;
+import config.ConfigReader;
 
 public class Base {
     protected WebDriver driver;
@@ -26,10 +25,15 @@ public class Base {
                 Boolean.parseBoolean(
                         ConfigReader.getProperty("headless")
                 );
+        String browser =
+                ConfigReader.getProperty("browser");
+
+        String url =
+                ConfigReader.getProperty("ui.base.url");
 
         driver = BrowserFactory.startBrowser(
-                ConfigReader.getProperty("browser"),
-                ConfigReader.getProperty("ui.base.url"),
+                browser,
+                url,
                 headless
         );
 

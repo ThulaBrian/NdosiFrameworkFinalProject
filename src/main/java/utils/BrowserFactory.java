@@ -36,7 +36,8 @@ public class BrowserFactory {
             driver = new InternetExplorerDriver();
         }
 
-        driver.manage().window().setSize(new Dimension(1920,1080));
+        //driver.manage().window().setSize(new Dimension(1920,1080));
+        driver.manage().window().maximize();
         driver.get(url);
         return driver;
     }
