@@ -26,27 +26,27 @@ Results are published as an Allure Report with screenshots, and the whole suite 
 
 
 ### API Tests: Validate endpoints used by the UI
-  1.Capture every endpoint the UI interacts with during the steps above (using browser DevTools → Network tab).
-  2.For each endpoint, send the request with Rest Assured and assert the response status code.
+    1.Capture every endpoint the UI interacts with during the steps above (using browser DevTools → Network tab).
+    2.For each endpoint, send the request with Rest Assured and assert the response status code.
 
-#### Purpose	            Method                   Endpoint	           Expected status
- 1.   Login	                 POST	         /api/<login-endpoint>	             200
- 2.	Get profile	             GET	        /api/<profile-endpoint>	             200
- 3.	Upload profile picture   POST/PUT	    /api/<upload-endpoint>	           200 / 201
- 4.	Get profile after update GET	       /api/<profile-endpoint>	             200
+####    Purpose	                Method                   Endpoint	           Expected status
+    1.   Login	                 POST	         /api/<login-endpoint>	             200
+    2.	Get profile	             GET	        /api/<profile-endpoint>	             200
+    3.	Upload profile picture   POST/PUT	    /api/<upload-endpoint>	           200 / 201
+    4.	Get profile after update GET	       /api/<profile-endpoint>	             200
 
 ## Tech Stack
 
 
-### Tool	                        Purpose
-    Java 17	                  Programming language
-    Maven	                  Build and dependency management
-    Selenium WebDriver 4	  Browser automation (UI tests)
-    Rest Assured	          API testing
-    TestNG or JUnit 5	      Test runner and assertions
-    Allure Report	          Test reporting with steps, attachments and history
-    WebDriverManager	      Automatic browser driver management
-    GitHub Actions	          CI pipeline and scheduled runs
+###  Tool	                        Purpose
+    -Java 17	              Programming language
+    -Maven	                  Build and dependency management
+    -Selenium WebDriver 4	  Browser automation (UI tests)
+    -Rest Assured	          API testing
+    -TestNG or JUnit 5	      Test runner and assertions
+    -Allure Report	          Test reporting with steps, attachments and history
+    -WebDriverManager	      Automatic browser driver management
+    -GitHub Actions	          CI pipeline and scheduled runs
 
 ## Project Structure
 
@@ -63,11 +63,11 @@ The UI layer follows the Page Object Model (POM): each page (Homepage, Login, Da
 
 ## Getting Started
 
-## 1. Clone the repository
+### 1. Clone the repository
 git clone https://github.com/ThulaBrian/NdosiFrameworkFinalProject
 .git
 cd <NdosiFrameworkFinalProject>
 
-## 2. Install dependencies
+### 2. Install dependencies
 mvn clean install -DskipTests
 
