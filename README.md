@@ -64,9 +64,8 @@ The UI layer follows the Page Object Model (POM): each page (Homepage, Login, Da
 ## Getting Started
 
 ### 1. Clone the repository
-git clone https://github.com/ThulaBrian/NdosiFrameworkFinalProject
-.git
-cd <NdosiFrameworkFinalProject>
+git clone https://github.com/ThulaBrian/NdosiFrameworkFinalProject.git
+cd NdosiFrameworkFinalProject
 
 ### 2. Install dependencies
 mvn clean install -DskipTests
