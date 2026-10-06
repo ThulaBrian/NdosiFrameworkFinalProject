@@ -113,3 +113,63 @@ cd NdosiFrameworkFinalProject
 ### 2. Install dependencies
 mvn clean install -DskipTests
 
+This command cleans the previous build, compiles the project, and resolves the required Maven dependencies without executing the tests.
+
+### 3.Run the automated tests
+
+Run the complete test suite:
+
+mvn clean test
+
+### 4. Generate and view the Allure report
+
+After test execution, generate the report:
+
+allure generate allure-results --clean -o allure-report
+
+Open the report in your browser:
+
+allure open allure-report
+
+# Continuous Integration with GitHub Actions
+
+The test suite is intended to run automatically through GitHub Actions:
+
+**On every push to the configured branches.
+**On a nightly schedule at midnight SAST.
+**With test results and Allure report artifacts retained for review.
+
+GitHub Actions scheduled workflows use UTC. Since SAST is UTC+2, midnight SAST corresponds to 22:00 UTC on the previous day.
+
+on:
+push:
+schedule:
+- cron: '0 22 * * *'
+workflow_dispatch:
+
+The scheduled run is subject to GitHub Actions scheduling behavior. Configure the appropriate branches, Java and Maven setup, browser dependencies, secrets, and report artifact upload in the workflow.
+
+# Reporting and Test Evidence
+
+The suite should produce an Allure report containing:
+
+Test names and execution results.
+Step-by-step execution details.
+Failure messages and stack traces.
+Screenshots captured during UI test failures, and optionally at key checkpoints.
+API request and response details where appropriate, with passwords, tokens, cookies, and other sensitive data redacted.
+
+The report helps identify failures and provides evidence for debugging and regression testing.
+
+# Notes and Limitations
+
+- The actual API endpoints and their expected status codes must be confirmed against the application.
+- API tests must reproduce the authentication and request requirements of the live test environment.
+- UI tests should use explicit waits rather than fixed sleep intervals wherever possible.
+- Profile picture verification should compare the actual displayed image or a stable image identifier rather than relying only on a success message.
+- The application URL, credentials, and test data should be configurable so the suite can run locally and in CI.
+- The exact test commands and report paths depend on the existing Maven, test-runner, and Allure configuration.
+
+# Project Repository
+
+NdosiFrameworkFinalProject on GitHub
