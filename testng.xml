@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-
 <suite name="Ndosi Automation Suite">
-
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
     <test name="UI Tests">
-
         <classes>
-
             <class name="ndosiuitest.UItests"/>
-
         </classes>
-
     </test>
-
 </suite>
