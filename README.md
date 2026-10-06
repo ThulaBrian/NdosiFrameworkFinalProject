@@ -50,6 +50,49 @@ Results are published as an Allure Report with screenshots, and the whole suite 
 
 ## Project Structure
 
+NdosiFrameworkFinalProject/ 
+├── .github/ 
+│   └── workflows/ │ 
+        └── tests.yml 
+├── src/ 
+│     ├── main/
+│     │   └── java/
+│     │   │       └── api/
+│     │   │       │     └── payloadbuilder
+│     │   │       │                 ├── LoginPayload
+│     │   │       │                 ├── ProfilePayload
+│     │   │       │     └── requestbuileder
+│     │   │       │                 ├── ProfileRequestBuilder
+│     │   │       │                 ├── UserRequestBuilder
+│     │   │       └── config
+│     │   │       │     ├── ConfigReader                              
+│     │   │       └── pages/ 
+│     │   │       │     ├── LoginPage.java 
+│     │   │       │     ├── HomePage.java 
+│     │   │       │     ├── DashboardPage.java
+│     │   │       │     ├── MyProfilePage.java 
+│     │   │       │     └── EditProfilePage.java
+│     │   │       └── reporting
+│     │   │       │     ├── ExtentReportManager
+│     │   │       └── utils
+│     │   │             ├── BrowserFactory
+│     │   │             ├── DatabaseConnection
+│     │   │             ├── ReadFromFile
+│     │   │             ├── TakeScreenshots
+│     └── test/ 
+│         ├── java/ 
+│         │   ├── ui/ 
+│         │   │   └── ProfilePictureTest.java 
+│         │   ├── api/
+│         │   │   └── ProfilePictureApiTest.java 
+│         │   └── base/ 
+│         └── resources/ 
+│            ├── testdata/ 
+│            │   └── profile-picture.jpg 
+│            └── allure.properties 
+├── pom.xml 
+└── README.md
+
 The UI layer follows the Page Object Model (POM): each page (Homepage, Login, Dashboard, Edit Profile, My profile) has its own class so locators and actions live in one place and tests stay readable.
 
 ## Prerequisites
