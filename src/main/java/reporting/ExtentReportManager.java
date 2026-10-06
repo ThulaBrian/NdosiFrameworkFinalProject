@@ -7,7 +7,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import java.io.File;
 
 public class ExtentReportManager {
-    private static final String reportDir = System.getProperty("user.dir") + "/Reports/WebAutomationAdvancedProject.html";
+    private static final String reportDir = System.getProperty("user.dir") + "/reports/WebAutomationAdvancedProject.html";
 
     //Main reporting engine object (holds all test results)
     private static ExtentReports extentReports;

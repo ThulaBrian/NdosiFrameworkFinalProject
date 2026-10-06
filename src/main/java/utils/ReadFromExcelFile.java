@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class ReadFromExcelFile {
-    private static String testData = System.getProperty("user.dir")+"/src/test/java/TestData/testData.xlsx";
+    private static String testData = System.getProperty("user.dir")+"/src/main/resources/testdata/TestData.xlsx";
 
     public static DataFormatter dataFormatter = new DataFormatter();
 

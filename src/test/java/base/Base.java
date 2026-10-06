@@ -7,6 +7,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import utils.BrowserFactory;
 import config.ConfigReader;
+import utils.ReadFromExcelFile;
+import utils.TakeScreenshots;
 
 public class Base {
     protected WebDriver driver;
@@ -15,6 +17,8 @@ public class Base {
     protected DashboardPage dashboardPage;
     protected EditProfilePage editProfilePage;
     protected MyprofilePage myprofilePage;
+    protected TakeScreenshots TakeScreenshots = new TakeScreenshots();
+
 
     @BeforeClass
     public void setUp() {
