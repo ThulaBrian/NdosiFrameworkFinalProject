@@ -38,15 +38,15 @@ Results are published as an Allure Report with screenshots, and the whole suite 
 ## Tech Stack
 
 
-     Tool	                        Purpose
-    -Java 17	              Programming language
-    -Maven	                  Build and dependency management
-    -Selenium WebDriver 4	  Browser automation (UI tests)
-    -Rest Assured	          API testing
-    -TestNG or JUnit 5	      Test runner and assertions
-    -Allure Report	          Test reporting with steps, attachments and history
-    -WebDriverManager	      Automatic browser driver management
-    -GitHub Actions	          CI pipeline and scheduled runs
+  Tool	                        Purpose
+- Java 17	              Programming language 
+- Maven	                  Build and dependency management
+- Selenium WebDriver 4	  Browser automation (UI tests)
+- Rest Assured	          API testing
+- TestNG or JUnit 5	      Test runner and assertions
+- Allure Report	          Test reporting with steps, attachments and history
+- WebDriverManager	      Automatic browser driver management
+- GitHub Actions	          CI pipeline and scheduled runs
 
 ## Project Structure
 
@@ -98,11 +98,11 @@ The UI layer follows the Page Object Model (POM): each page (Homepage, Login, Da
 ## Prerequisites
 
 #### Make sure you have the following installed:
-     - JDK 17 or later – check with java -version
-     - Maven 3.9+ – check with mvn -version
-     - Google Chrome (latest) – the default browser
-     - Git
-     - Allure CLI (optional, only to view reports locally) – see the Allure installation guide
+- JDK 17 or later – check with java -version
+- Maven 3.9+ – check with mvn -version
+- Google Chrome (latest) – the default browser
+- Git
+- Allure CLI (optional, only to view reports locally) – see the Allure installation guide
 
 ## Getting Started
 
@@ -131,7 +131,7 @@ Open the report in your browser:
 
 allure open allure-report
 
-# Continuous Integration with GitHub Actions
+## Continuous Integration with GitHub Actions
 
 The test suite is intended to run automatically through GitHub Actions:
 
@@ -149,7 +149,7 @@ workflow_dispatch:
 
 The scheduled run is subject to GitHub Actions scheduling behavior. Configure the appropriate branches, Java and Maven setup, browser dependencies, secrets, and report artifact upload in the workflow.
 
-# Reporting and Test Evidence
+## Reporting and Test Evidence
 
 The suite should produce an Allure report containing:
 
@@ -161,7 +161,7 @@ API request and response details where appropriate, with passwords, tokens, cook
 
 The report helps identify failures and provides evidence for debugging and regression testing.
 
-# Notes and Limitations
+## Notes and Limitations
 
 - The actual API endpoints and their expected status codes must be confirmed against the application.
 - API tests must reproduce the authentication and request requirements of the live test environment.
@@ -170,6 +170,6 @@ The report helps identify failures and provides evidence for debugging and regre
 - The application URL, credentials, and test data should be configurable so the suite can run locally and in CI.
 - The exact test commands and report paths depend on the existing Maven, test-runner, and Allure configuration.
 
-# Project Repository
+## Project Repository
 
 NdosiFrameworkFinalProject on GitHub
