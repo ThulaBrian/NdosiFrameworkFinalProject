@@ -7,6 +7,10 @@
     <test name="UI Tests">
         <classes>
             <class name="ndosiuitest.UItests"/>
+
+            <class name="ndosiapitest.LoginApiTest"/>
+
+            <class name="ndosiapitest.ProfileApiTest"/>
         </classes>
     </test>
 </suite>

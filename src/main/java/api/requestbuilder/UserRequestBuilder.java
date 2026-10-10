@@ -1,6 +1,7 @@
 package api.requestbuilder;
 
 import api.payloadbuilder.LoginPayload;
+import config.ConfigReader;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -9,12 +10,13 @@ import static io.restassured.RestAssured.given;
 public class UserRequestBuilder {
 
     static String userToken;
+    static String BaseURL = ConfigReader.getProperty("Baseurl");
 
     public static Response loginUser(String email, String password) {
 
         String apiPath = "/APIDEV/login";
         Response response = given()
-                .baseUri("Baseurl")
+                .baseUri(BaseURL)
                 .basePath(apiPath)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
