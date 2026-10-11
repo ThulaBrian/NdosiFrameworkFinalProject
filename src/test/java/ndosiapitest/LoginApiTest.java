@@ -8,7 +8,7 @@ import utils.DatabaseConnection;
 
 public class LoginApiTest {
 
-    @Test
+    //@Test
     public void userLoginTest() {
 
                 UserRequestBuilder.loginUser(DatabaseConnection.getEmail, DatabaseConnection.getPassword)

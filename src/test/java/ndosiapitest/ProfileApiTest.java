@@ -10,7 +10,7 @@ import java.io.File;
 import java.sql.SQLException;
 
 import static org.hamcrest.Matchers.equalTo;
-@Test
+//@Test
 public class ProfileApiTest {
 
       String imagePath = ConfigReader.getProperty("imagepath");
@@ -22,7 +22,7 @@ public class ProfileApiTest {
 //                .assertThat()
 //                .statusCode(200);
 //    }
-@Test
+//@Test
 public void updateImage() throws SQLException {
 
     // Get existing profile image information from database

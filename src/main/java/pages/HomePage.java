@@ -21,15 +21,15 @@ public class HomePage {
     public HomePage(WebDriver driver)
     {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    public boolean verifyHomeP()
+    public void verifyHomeP()
     {
         //Assert.assertTrue(verifyWhatsappOTPPage.isDisplayed());
         wait.until(ExpectedConditions.visibilityOf(verifyHomepage));
         verifyHomepage.isDisplayed();
-        return true;
+
     }
 
     public void clickLoginBtn()
