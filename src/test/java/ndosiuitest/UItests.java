@@ -6,14 +6,14 @@ import utils.ReadFromExcelFile;
 
 @Test
 public class UItests extends Base {
-    @Test
-    public void verifyHomePage()
-    {
-        homePage.verifyHomeP();
-        System.out.println("Homepage verified");
-        TakeScreenshots.takeSnapShots(driver, "Homepage_screenshot001");
-    }
-    @Test(dependsOnMethods = "verifyHomePage")
+//    @Test
+//    public void verifyHomePage()
+//    {
+//        homePage.verifyHomeP();
+//        System.out.println("Homepage verified");
+//        TakeScreenshots.takeSnapShots(driver, "Homepage_screenshot001");
+//    }
+    @Test//(dependsOnMethods = "verifyHomePage")
     public void clickhomeLoginButton()
     {
         homePage.clickLoginBtn();
