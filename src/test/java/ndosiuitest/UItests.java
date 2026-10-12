@@ -6,7 +6,7 @@ import utils.ReadFromExcelFile;
 
 @Test
 public class UItests extends Base {
-
+    @Test
     public void verifyHomePage()
     {
         homePage.verifyHomeP();
