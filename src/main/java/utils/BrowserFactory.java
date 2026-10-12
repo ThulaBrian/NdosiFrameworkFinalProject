@@ -21,8 +21,8 @@ public class BrowserFactory {
                 options.addArguments("--headless");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
-                //options.addArguments("--window-size=2560,1440");
-                driver.manage().window().setSize(new Dimension(2560, 1440));
+                options.addArguments("--window-size=1920,1080");
+
             }else{
                 System.out.println("No headless");
             }
@@ -39,8 +39,8 @@ public class BrowserFactory {
             driver = new InternetExplorerDriver();
         }
 
-        //driver.manage().window().setSize(new Dimension(1920,1080));
-        driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1920,1080));
+        //driver.manage().window().maximize();
         driver.get(url);
         return driver;
     }
