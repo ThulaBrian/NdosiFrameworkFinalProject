@@ -21,7 +21,8 @@ public class BrowserFactory {
                 options.addArguments("--headless");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("--window-size=2560,1440");
+                //options.addArguments("--window-size=2560,1440");
+                driver.manage().window().setSize(new Dimension(2560, 1440));
             }else{
                 System.out.println("No headless");
             }
