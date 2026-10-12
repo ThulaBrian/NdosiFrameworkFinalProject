@@ -15,7 +15,7 @@ public class HomePage {
     @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[3]/button/span[2]")
     WebElement homepageLoginBtn;
 
-    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/button[1]/span[2]")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[3]/button/span[2]")
     WebElement verifyHomepage;
 
     public HomePage(WebDriver driver)
