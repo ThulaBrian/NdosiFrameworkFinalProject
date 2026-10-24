@@ -9,50 +9,58 @@ import static io.restassured.RestAssured.given;
 
 public class ProfilePayload {
 
-
-
-    public static JSONObject fetchProfilePayload(
-            String firstName,
-            String lastName,
-            String phone,
-            String phoneNumber,
-            String linkedIn,
-            String githubUsername,
-            String linkedInUrl,
-            String linkedin,
-            String yearsOfExperience) {
-
-        JSONObject profile = new JSONObject();
-
-        profile.put("firstName", firstName);
-        profile.put("lastName", lastName);
-        profile.put("phone", phone);
-        profile.put("phoneNumber", phoneNumber);
-        profile.put("linkedIn", linkedIn);
-        profile.put("githubUsername", githubUsername);
-        profile.put("linkedInUrl", linkedInUrl);
-        profile.put("linkedin", linkedin);
-        profile.put("yearsOfExperience", yearsOfExperience);
-
-        return profile;
+    public static JSONObject fetchProfilePayload(String firstName, String lastName,
+                                            String base64Image, String aboutMe) {
+        JSONObject profilepayload = new JSONObject();
+        profilepayload.put("firstName", firstName);
+        profilepayload.put("lastName", lastName);
+        profilepayload.put("profilePicture", base64Image);
+        profilepayload.put("aboutMe", aboutMe);
+        return profilepayload;
     }
-    public static JSONObject profilePicturePayload(String profileImage) {
-        JSONObject userprofilePayload = new JSONObject();
-        userprofilePayload.put("profileImage", profileImage);
-        return userprofilePayload;
-    }
-    public static RequestSpecification updateImage(
-            File profileImage,
-            String currentProfileImage,
-            String previousProfileImage,
-            boolean replaceExisting) {
 
-        return given()
-                .multiPart("profileImage", profileImage, "image/jpeg")
-                .multiPart("currentProfileImage", currentProfileImage)
-                .multiPart("previousProfileImage", previousProfileImage)
-                .multiPart("replaceExisting", String.valueOf(replaceExisting));
-    }
+//    public static JSONObject fetchProfilePayload(
+//            String firstName,
+//            String lastName,
+//            String phone,
+//            String phoneNumber,
+//            String linkedIn,
+//            String githubUsername,
+//            String linkedInUrl,
+//            String linkedin,
+//            String yearsOfExperience) {
+//
+//        JSONObject profile = new JSONObject();
+//
+//        profile.put("firstName", firstName);
+//        profile.put("lastName", lastName);
+//        profile.put("phone", phone);
+//        profile.put("phoneNumber", phoneNumber);
+//        profile.put("linkedIn", linkedIn);
+//        profile.put("githubUsername", githubUsername);
+//        profile.put("linkedInUrl", linkedInUrl);
+//        profile.put("linkedin", linkedin);
+//        profile.put("yearsOfExperience", yearsOfExperience);
+//
+//        return profile;
+//    }
+//    public static JSONObject profilePicturePayload(String profileImage) {
+//        JSONObject userprofilePayload = new JSONObject();
+//        userprofilePayload.put("profileImage", profileImage);
+//        return userprofilePayload;
+//    }
+//    public static RequestSpecification updateImage(
+//            File profileImage,
+//            String currentProfileImage,
+//            String previousProfileImage,
+//            boolean replaceExisting) {
+//
+//        return given()
+//                .multiPart("profileImage", profileImage, "image/jpeg")
+//                .multiPart("currentProfileImage", currentProfileImage)
+//                .multiPart("previousProfileImage", previousProfileImage)
+//                .multiPart("replaceExisting", String.valueOf(replaceExisting));
+//    }
 
 }
 

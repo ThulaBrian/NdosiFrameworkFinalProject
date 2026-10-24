@@ -9,23 +9,49 @@ import static io.restassured.RestAssured.given;
 
 public class UserRequestBuilder {
 
-    static String userToken;
+//    static String userToken;
+//    static String BaseURL = ConfigReader.getProperty("Baseurl");
+//
+//    public static Response loginUser(String email, String password) {
+//
+//        String apiPath = "/APIDEV/login";
+//        Response response = given()
+//                .baseUri(BaseURL)
+//                .basePath(apiPath)
+//                .contentType(ContentType.JSON)
+//                .accept(ContentType.JSON)
+//                .body(LoginPayload.userLoginPayload(email, password))
+//                .post()
+//                .then()
+//                .extract().response();
+//        userToken = response.jsonPath().getString("data.token");
+//        return response;
+//
+//    }
+    private static String token;
+
+    public static String getToken() {
+        return token;
+    }
+
     static String BaseURL = ConfigReader.getProperty("Baseurl");
 
     public static Response loginUser(String email, String password) {
 
-        String apiPath = "/APIDEV/login";
+        String apiPath = "/APIDEV";
         Response response = given()
                 .baseUri(BaseURL)
                 .basePath(apiPath)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(LoginPayload.userLoginPayload(email, password))
-                .post()
-                .then()
-                .extract().response();
-        userToken = response.jsonPath().getString("data.token");
-        return response;
+                .when()
+                .post("/login");
 
+        // Save token for later requests (only if login succeeded)
+        if (response.statusCode() == 200) {
+            token = response.jsonPath().getString("data.token");
+        }
+        return response;
     }
 }

@@ -8,9 +8,8 @@
         <classes>
             <class name="ndosiuitest.UItests"/>
 
-            <class name="ndosiapitest.LoginApiTest"/>
+            <class name="ndosiapitest.ProfileApiTests"/>
 
-            <class name="ndosiapitest.ProfileApiTest"/>
         </classes>
     </test>
 </suite>

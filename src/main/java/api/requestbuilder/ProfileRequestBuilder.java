@@ -7,63 +7,18 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 
 import static io.restassured.RestAssured.given;
 
 public class ProfileRequestBuilder {
-    static String userToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJlNWQ3M2FmMy03MmJkLTQ0N2ItYWRlYS1mYTI2OWM4ZWU2NzgiLCJlbWFpbCI6IkJyaWFuMTBXYW5kYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInNlc3Npb25JZCI6IjE5ZWJlZDBlLTk2NTEtNGNjYy04ZGQzLTQwNDYwMDYyZDUzMiIsImlhdCI6MTc5MTAzODY3MSwiZXhwIjoxNzkxMTI1MDcxfQ.ur_aCDZx0tUzkAX3yQ1lT8fZiYQa4Blw1ofs0x1xqqY";
+    private static final String IMAGE_PATH = "src/main/resources/images/newimage.jpg";
     static String BaseURL = ConfigReader.getProperty("Baseurl");
 
 
-    public static Response fetchProfile(
-            String firstName,
-            String lastName,
-            String phone,
-            String phoneNumber,
-            String linkedIn,
-            String githubUsername,
-            String linkedInUrl,
-            String linkedin,
-            String yearsOfExperience
-    )
-    {
-        String apiPath = "/APIDEV/profile";
-        Response response = given()
-                .baseUri(BaseURL)
-                .basePath(apiPath)
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .body(ProfilePayload.fetchProfilePayload(firstName,
-                         lastName,
-                         phone,
-                         phoneNumber,
-                         linkedIn,
-                         githubUsername,
-                         linkedInUrl,
-                         linkedin,
-                         yearsOfExperience))
-                .header("Authorization", "Bearer " + UserRequestBuilder.userToken)
-                .put()
-                .then()
-                .extract().response();
-        return response;
-    }
-
-//    public static Response updateProfile(String profileImage)
-//    {
-//        String apiPath = "/APIDEV/profile/image";
-//        Response response = given()
-//                .baseUri(BaseURL)
-//                .basePath(apiPath)
-//                .contentType(ContentType.JSON)
-//                .accept(ContentType.JSON)
-//                .body(ProfilePayload.profilePicturePayload(profileImage))
-//                .header("Authorization", "Bearer " + UserRequestBuilder.userToken)
-//                .post()
-//                .then()
-//                .extract().response();
-//        return response;
-//    }
     public static Response fetchUserProfile()
     {
         String apiPath ="/APIDEV/profile";
@@ -73,36 +28,64 @@ public class ProfileRequestBuilder {
                 .basePath(apiPath)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + userToken)
+                .header("Authorization", "Bearer " + UserRequestBuilder.getToken())
                 .get()
                 .then().extract().response();
         return response;
 
     }
-    public static Response updateProfileImage(
-            File profileImage,
-            String currentProfileImage,
-            String previousProfileImage,
-            boolean replaceExisting) {
-
-        String apiPath = "/APIDEV/profile/image";
-
-        Response response = ProfilePayload.updateImage(
-                        profileImage,
-                        currentProfileImage,
-                        previousProfileImage,
-                        replaceExisting)
+    public static Response updateProfileWithBase64(String firstName, String lastName,
+                                                   String aboutMe) throws IOException {
+        byte[] bytes = Files.readAllBytes(Paths.get(IMAGE_PATH));
+        String base64Image = "data:image/jpeg;base64,"
+                + Base64.getEncoder().encodeToString(bytes);
+        String apiPath = "/APIDEV";
+        return given()
                 .baseUri(BaseURL)
                 .basePath(apiPath)
-                .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + userToken)
+                .header("Authorization", "Bearer " + UserRequestBuilder.getToken())
+                .contentType(ContentType.JSON)
+                .body(ProfilePayload.fetchProfilePayload(firstName, lastName, base64Image, aboutMe))
                 .when()
-                .post()
-                .then()
-                .extract()
-                .response();
-
-        return response;
+                .put("/profile");
     }
+
+    public static Response uploadProfilePicture() {
+        File image = new File(IMAGE_PATH);
+        String apiPath = "/APIDEV";
+        return given()
+                .baseUri(BaseURL)
+                .basePath(apiPath)
+                .header("Authorization", "Bearer " + UserRequestBuilder.getToken())
+                .multiPart("profileImage", image, "image/jpeg")
+                .when()
+                .post("/profile/image");
+    }
+
+//    public static Response updateProfileImage(
+//            File profileImage,
+//            String currentProfileImage,
+//            String previousProfileImage,
+//            boolean replaceExisting) {
+//
+//        String apiPath = "/APIDEV/profile/image";
+//
+//        Response response = ProfilePayload.updateImage(
+//                        profileImage,
+//                        currentProfileImage,
+//                        previousProfileImage,
+//                        replaceExisting)
+//                .baseUri(BaseURL)
+//                .basePath(apiPath)
+//                .accept(ContentType.JSON)
+//                .header("Authorization", "Bearer " + userToken)
+//                .when()
+//                .post()
+//                .then()
+//                .extract()
+//                .response();
+//
+//        return response;
+//    }
 
 }
