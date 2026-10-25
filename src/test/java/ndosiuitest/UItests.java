@@ -1,6 +1,7 @@
 package ndosiuitest;
 
 import base.Base;
+import junit.framework.Assert;
 import org.testng.annotations.Test;
 import utils.ReadFromExcelFile;
 import java.net.URL;
@@ -15,6 +16,7 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 
 @Test
 public class UItests extends Base {
+
     @Test(description = "Verify the home page is displayed")
     @Story("User Interface Tests(Selenium Tests)")
     @Severity(CRITICAL)
@@ -33,6 +35,7 @@ public class UItests extends Base {
     {
         homePage.clickLoginBtn();
         System.out.println("Homepage login button clicked");
+
     }
 
     @Test(dependsOnMethods = "clickhomeLoginButton")

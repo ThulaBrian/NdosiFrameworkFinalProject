@@ -53,45 +53,54 @@ Results are published as an Allure Report with screenshots, and the whole suite 
     NdosiFrameworkFinalProject/ 
     ├── .github/ 
     │      └── workflows/  
-           └── tests.yml 
+    │            └── tests.yml                                  # CI/CD pipeline configuration (Cron scheduled)
     ├── src/ 
     │     ├── main/
     │     │   └── java/
-    │     │   │       └── api/
-    │     │   │       │     └── payloadbuilder
-    │     │   │       │                 ├── LoginPayload
-    │     │   │       │                 ├── ProfilePayload
-    │     │   │       │     └── requestbuileder
-    │     │   │       │                 ├── ProfileRequestBuilder
-    │     │   │       │                 ├── UserRequestBuilder
-    │     │   │       └── config
-    │     │   │       │     ├── ConfigReader                              
-    │     │   │       └── pages/ 
-    │     │   │       │     ├── LoginPage.java 
-    │     │   │       │     ├── HomePage.java 
-    │     │   │       │     ├── DashboardPage.java
-    │     │   │       │     ├── MyProfilePage.java 
-    │     │   │       │     └── EditProfilePage.java
-    │     │   │       └── reporting
-    │     │   │       │     ├── ExtentReportManager
-    │     │   │       └── utils
-    │     │   │             ├── BrowserFactory
-    │     │   │             ├── DatabaseConnection
-    │     │   │             ├── ReadFromFile
-    │     │   │             ├── TakeScreenshots
-    │     └── test/ 
-    │         ├── java/ 
-    │         │   ├── ui/ 
-    │         │   │   └── ProfilePictureTest.java 
-    │         │   ├── api/
-    │         │   │   └── ProfilePictureApiTest.java 
-    │         │   └── base/ 
-    │         └── resources/ 
-    │             ├── testdata/ 
-    │             │   └── profile-picture.jpg 
-    │             └── allure.properties 
-    ├── pom.xml 
-    └── README.md
+    │     │   │  │    └── api/
+    │     │   │  │    │     └── payloadbuilder
+    │     │   │  │    │                 ├── LoginPayload        # Login Endpoint payload
+    │     │   │  │    │                 ├── ProfilePayload      # Profile Endpoints payload
+    │     │   │  │    │     └── requestbuileder
+    │     │   │  │    │                 ├── ProfileRequestBuilder    # Profile Endpoints Request builder class
+    │     │   │  │    │                 ├── UserRequestBuilder       # Login user Endpoint Reuest Builder Class
+    │     │   │  │    └── config
+    │     │   │  │    │     ├── ConfigReader             # Configuration Reader class                 
+    │     │   │  │    └── pages/ 
+    │     │   │  │    │     ├── LoginPage.java           # UI Page Object
+    │     │   │  │    │     ├── HomePage.java            # UI Page Object
+    │     │   │  │    │     ├── DashboardPage.java       # UI Page Object
+    │     │   │  │    │     ├── MyProfilePage.java       # UI Page Object
+    │     │   │  │    │     └── EditProfilePage.java     # UI Page Object
+    │     │   │  │    └── reporting
+    │     │   │  │    │     ├── ExtentReportManager
+    │     │   │  │    └── utils
+    │     │   │  │    │     ├── BrowserFactory           # Browser Factory class
+    │     │   │  │    │     ├── TakeScreenshots          # Take Screenshots class
+    │     │   │  │    │     ├── ReadFromFile             # Read from Excel class
+    │     │   │  └── resources/ 
+    │     │   │       ├── testdata/
+    │     │   │       │     └── TestData.xlsx            # Test Data
+    │     │   │       ├── images/
+    │     │   │       │     └── newimage.jpg             # Rest Assured test upload image
+    │     │   │       │     └── Profile.jpg              # UI test upload image
+    │     │   │       └── Config.properties              # Project Configuration file
+    │     │   │              
+    │     └── test/   
+    │     │       java/ 
+    │     │       ├── ndosiuitest/ 
+    │     │       │   └── UItests.java                    # UI Workflow Tests
+    │     │       ├── ndosiapitest/
+    │     │       │   └── ProfileApiTests.java            # Api Rest Assured Tests
+    │     │       └── base/
+    │     │           └── Base                            # Parent UI Test class
+    │     │    
+    │     │        
+    │     │        
+    │     │       
+    ├── pom.xml                                           # Project Dependencies and Plugins
+    ├── README.md                                         # Project documentation
+    └── testng.xml                                        # TestNG XML configuration file
 
 The UI layer follows the Page Object Model (POM): each page (Homepage, Login, Dashboard, Edit Profile, My profile) has its own class so locators and actions live in one place and tests stay readable.
 
@@ -144,7 +153,7 @@ GitHub Actions scheduled workflows use UTC. Since SAST is UTC+2, midnight SAST c
 on:
 push:
 schedule:
-- cron: '0 22 * * *'
+- cron: ' 00 * * *'
 workflow_dispatch:
 
 The scheduled run is subject to GitHub Actions scheduling behavior. Configure the appropriate branches, Java and Maven setup, browser dependencies, secrets, and report artifact upload in the workflow.
