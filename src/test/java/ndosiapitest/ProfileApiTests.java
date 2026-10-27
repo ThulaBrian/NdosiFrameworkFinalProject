@@ -19,7 +19,6 @@ public class ProfileApiTests {
     @Severity(CRITICAL)
     @Description("User login test")
     public void userLoginTest() {
-
         UserRequestBuilder.loginUser(ReadFromExcelFile.email, ReadFromExcelFile.password)
                 .then().log().all()
                 .assertThat()
